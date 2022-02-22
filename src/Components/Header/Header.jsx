@@ -1,7 +1,11 @@
 import React from 'react';
+import Nav from "./nav/Nav";
 
 export default function Header() {
     return (
-        <div>Header</div>
+        <div>
+
+            <Nav/>
+        </div>
     )
 }
