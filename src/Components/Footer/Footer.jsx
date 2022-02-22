@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from "react"
 import axios from "axios"
 
@@ -14,9 +15,6 @@ function Footer(props) {
             setCopyright(res.data)
         })
     }, [])
-
-    console.log(footerMenu);
-    console.log(copyright);
 
     return <footer className="site-footer" role="contentinfo">
         <div className="site-info">
