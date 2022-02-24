@@ -21,7 +21,7 @@ function Footer(props) {
             <div className="footer-content">
                 <ul>
                     {footerMenu.map((item, index) => {
-                        return  <li className="menu-item">
+                        return  <li className="menu-item" key={index}>
                                 <a href="{item.url}">
                                     {item.title}
                                 </a>
