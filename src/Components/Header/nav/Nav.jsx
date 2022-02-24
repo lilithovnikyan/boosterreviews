@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios"
-import {logDOM} from "@testing-library/react";
+import "./Nav.scss";
 
 const Nav = () => {
 
@@ -15,7 +15,7 @@ const Nav = () => {
 
     // console.log(menuLink, "menulink")
     return (
-        <div>
+        <div className="right-menu">
             {menuLink.map((item, i) => {
                 console.log(item, "item")
                 console.log(item.url, "item url")

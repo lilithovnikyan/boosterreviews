@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import "./Banner.scss";
 
 function Banner() {
     const [bannerTitle, setBannerTitle] = useState();
@@ -14,9 +15,11 @@ function Banner() {
                 setBannerSideImage(res.data.acf.br_cover_side_image);
             })
     }, [])
-    return <div style={{backgroundImage: `url(${bannerBgImage})`}}>
-        <h1>{bannerTitle}</h1>
-        <img src={bannerSideImage} />
+    return <div className="banner" style={{backgroundImage: `url(${bannerBgImage})`}}>
+        <div className="banner-content">
+            <h1 className="banner-title">{bannerTitle}</h1>
+            <img className="banner-badge" src={bannerSideImage} />
+        </div>
     </div>;
 }
 
