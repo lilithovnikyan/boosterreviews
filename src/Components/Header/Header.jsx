@@ -8,10 +8,10 @@ export default function Header() {
     return (
         <header>
             <div className="top-header">
-                <Logo />
-                <Nav />
+                <Logo/>
+                <Nav/>
             </div>
-            <Banner />
+            <Banner/>
         </header>
     )
 }

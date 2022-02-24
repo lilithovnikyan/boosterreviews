@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios"
+import axios from "axios";
 import "./Nav.scss";
+import {Link} from "react-router-dom";
 
 const Nav = () => {
 
@@ -8,24 +9,19 @@ const Nav = () => {
 
     useEffect(() => {
         axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/menu-locations/primary`).then(menu => {
-            // console.log(menu.data)
             setMenuLink(menu.data)
         })
     }, [])
 
-    // console.log(menuLink, "menulink")
     return (
         <div className="right-menu">
             {menuLink.map((item, i) => {
-                console.log(item, "item")
-                console.log(item.url, "item url")
+
                 return (
-                    <div key={i}>
-                        <a href={item.url}>{item.title}</a>
-                    </div>
+                    <li key={i}>
+                        <Link className="right-menu-link" to={item.slug}>{item.title}</Link>
+                    </li>
                 )
-
-
             })}
         </div>
     );
