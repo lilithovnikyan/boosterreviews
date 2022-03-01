@@ -3,7 +3,6 @@ import axios from "axios";
 import "./PrivacyUserInfo.scss";
 
 export default function PrivacyUserInfo(props) {
-  
   const [footerPages, setFooterPages] = useState([]);
 
   useEffect(() => {
@@ -19,9 +18,4 @@ export default function PrivacyUserInfo(props) {
     </div>
   )
 }
-
-
-
-
-
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, Outlet, useOutletContext } from 'react-router-dom';
+import Banner from '../Header/Banner/Banner';
 import "./Main.scss";
 import Reviews from './Reviews/Reviews';
 
@@ -23,13 +24,18 @@ export default function Main(props) {
     }, [parameters, object_id])
 
     return (
-        <div className="main">
-            <div className="main-content" dangerouslySetInnerHTML={{ __html: bannerDesc }}></div>
-            <p className="updated custom-updated">
-                <span>✓ </span>
-                Updated {month} 1
-            </p>
-            <Reviews parameters={parameters} />
-        </div>
+        <>
+            <div>
+                <Banner parameters={props.parameters} />
+            </div>
+            <div className="main">
+                <div className="main-content" dangerouslySetInnerHTML={{ __html: bannerDesc }}></div>
+                <p className="updated custom-updated">
+                    <span>✓ </span>
+                    Updated {month} 1
+                </p>
+                <Reviews parameters={parameters} />
+            </div>
+        </>
     );
 };

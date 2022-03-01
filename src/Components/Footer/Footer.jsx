@@ -4,7 +4,6 @@ import axios from "axios";
 import "./Footer.scss";
 import { Link } from "react-router-dom";
 
-
 function Footer(props) {
     const [footerMenu, setfirst] = useState([])
     const [copyright, setCopyright] = useState([])
@@ -18,6 +17,10 @@ function Footer(props) {
             setCopyright(res.data)
         })
     }, []);
+
+    let passSlug = (item) => {
+        props.setState(item);
+    }
 
     let passSlug = (item) => {
         props.setState(item);
@@ -39,4 +42,4 @@ function Footer(props) {
     </footer>;
 }
 
-export default Footer
+export default Footer;

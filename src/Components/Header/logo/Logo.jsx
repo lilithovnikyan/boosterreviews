@@ -11,14 +11,6 @@ export default function Logo(props) {
         axios.get("https://mobileboosterreview.com/wp-json/wp/v2/media/188").then(logoImg => {
             setLogo(logoImg.data)
         })
-<<<<<<< HEAD
-        }, []);
-
-    return(
-        <Link to="/">
-            <img src={logo.source_url} alt="" />
-        </Link>
-=======
     }, []);
 
     useEffect(() => {
@@ -36,6 +28,5 @@ export default function Logo(props) {
                 <img src={logo.source_url} alt="" />
             </Link>
         </div>
->>>>>>> c7ea9c90898960fe2675916d9b3dafa32a6f6ac4
     );
 }
