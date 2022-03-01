@@ -1,10 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams, Outlet, useOutletContext } from 'react-router-dom';
-import Banner from '../Header/Banner/Banner';
 import "./Main.scss";
-import Reviews from './Reviews/Reviews';
-
+import Reviews from '../Main/Reviews/Reviews';
+import Banner from "./Banner/Banner"
 export default function Main(props) {
 
     let { parameters } = props;

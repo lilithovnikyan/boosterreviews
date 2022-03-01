@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react"
 import "./App.scss";
 import React, { useCallback, useState } from 'react';
 import Header from './Components/Header/Header';
 import Footer from "./Components/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import PrivacyUserInfo from "./Components/PrivacyUserInfo/PrivacyUserInfo";
+import Main from "./Components/Main/Main";
 
 function App() {
   const [state, setState] = useState([]);

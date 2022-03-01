@@ -22,10 +22,6 @@ function Footer(props) {
         props.setState(item);
     }
 
-    let passSlug = (item) => {
-        props.setState(item);
-    }
-
     return <footer className="footer">
             <div className="footer-content">
                 <ul>
