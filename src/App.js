@@ -1,14 +1,42 @@
 import "./App.scss";
+import React, { useCallback, useEffect, useState } from 'react';
 import Header from './Components/Header/Header';
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer/Footer";
+import { Route, Routes, useParams } from "react-router-dom";
 
 function App() {
+
+  const [parameters, setParameters] = useState([])
+  const [logoClickData, setlogoClickData] = useState([])
+
+  const wrapperSetParentState = useCallback(val => {
+    setParameters(val);
+  }, [setParameters]);
+
+  const logoSetParentState = useCallback(val => {
+    setlogoClickData(val);
+  }, [setlogoClickData]);
+
   return (
     <div className="App">
-        <Header/>
-        <Main/>
-        <Footer/>
+      <Routes>
+        <Route
+          path="*"
+          element={
+            <>
+              <Header
+                parameters={parameters}
+                parentStateSetter={wrapperSetParentState}
+                logoClickData={logoClickData}
+                logoSetParentState={logoSetParentState}
+              />
+              <Main parameters={parameters} />
+            </>
+          }
+        />
+      </Routes>
+      <Footer />
     </div>
   );
 }
