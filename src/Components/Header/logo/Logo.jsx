@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./Logo.scss"
 
 export default function Logo(props) {
 
@@ -25,7 +26,7 @@ export default function Logo(props) {
     return (
         <div>
             <Link to="/" onClick={()=>{onChangeHandler(props.logoClickData)}}>
-                <img src={logo.source_url} alt="" />
+                <img src={logo.source_url} alt=""  className="logo"/>
             </Link>
         </div>
     );
