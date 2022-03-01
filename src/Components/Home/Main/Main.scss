@@ -10,4 +10,17 @@
         text-align: justify;
         margin-bottom: 30px;
     }
+
+    .updated.custom-updated {
+        font-size: 18px;
+        font-weight: bold!important;
+        color: #43585b;
+        font-style: italic;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+    
+    .updated span {
+        color: #0dc342;
+    }
 }
