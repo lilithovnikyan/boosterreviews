@@ -20,7 +20,6 @@ export default function Header(props) {
                     logoSetParentState={props.logoSetParentState}
                 />
             </div>
-            <Banner parameters={props.parameters} />
         </header>
     )
 }

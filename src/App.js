@@ -1,12 +1,13 @@
 import "./App.scss";
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Header from './Components/Header/Header';
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer/Footer";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import PrivacyUserInfo from "./Components/PrivacyUserInfo/PrivacyUserInfo";
 
 function App() {
-
+  const [state, setState] = useState([]);
   const [parameters, setParameters] = useState([])
   const [logoClickData, setlogoClickData] = useState([])
 
@@ -35,8 +36,22 @@ function App() {
             </>
           }
         />
+        <Route
+          path={`${state.slug}`}
+          element={
+            <>
+              <Header
+                parameters={parameters}
+                parentStateSetter={wrapperSetParentState}
+                logoClickData={logoClickData}
+                logoSetParentState={logoSetParentState}
+              />
+              <PrivacyUserInfo state={state} setState={setState}/>
+            </>
+          }
+        />
       </Routes>
-      <Footer />
+      <Footer setState={setState}/>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from "react"
 import axios from "axios"
 import "./Footer.scss";
+import { Link } from "react-router-dom";
 
 function Footer(props) {
     const [footerMenu, setfirst] = useState([])
@@ -17,14 +18,18 @@ function Footer(props) {
         })
     }, [])
 
+    let passSlug = (item) => {
+        props.setState(item);
+    }
+
     return <footer className="footer">
             <div className="footer-content">
                 <ul>
                     {footerMenu.map((item, index) => {
                         return  <li className="menu-item" key={index}>
-                                <a href="{item.url}">
+                                <Link to={item.slug} onClick={() => passSlug(item)}>
                                     {item.title}
-                                </a>
+                                </Link>
                             </li>
                     })}
                 </ul>
@@ -33,4 +38,4 @@ function Footer(props) {
     </footer>;
 }
 
-export default Footer
+export default Footer;
