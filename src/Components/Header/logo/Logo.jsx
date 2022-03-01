@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Logo(){
 
@@ -10,12 +11,11 @@ const [logo, setLogo] = useState([])
             setLogo(logoImg.data)
         })
         }, []);
-        console.log(logo)
 
     return(
-        <div>
+        <Link to="/">
             <img src={logo.source_url} alt="" />
-        </div>
+        </Link>
     );
 }
  
