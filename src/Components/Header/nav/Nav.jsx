@@ -4,6 +4,8 @@ import "./Nav.scss";
 import { Link, Outlet, useOutlet, useParams } from "react-router-dom";
 
 const Nav = (props) => {
+    const [burger, setBurger] = useState(false);
+
     const params = useParams();
     const slug = params["*"];
     const [menuLink, setMenuLink] = useState([]);
@@ -34,6 +36,16 @@ const Nav = (props) => {
 
     return (
         <div className="right-menu">
+        <div className="menu-bar" onClick={() => setBurger(!burger)} value={burger}>
+        {/*<h4>{burger ? "Close" : "Menu"}</h4>*/}
+        <div className={`header-burger ${burger ? "active" : ""}`}>
+
+            <span></span>
+        </div>
+
+
+    </div>
+        <ul className={burger ? "open" : ""}>
             {menuLink.map((item, i) => {
 
                 let active = '';
@@ -47,6 +59,7 @@ const Nav = (props) => {
                     </li>
                 )
             })}
+            </ul>
         </div>
     );
 };

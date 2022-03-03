@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams, Outlet, useOutletContext } from 'react-router-dom';
 import "./Main.scss";
+
 import Reviews from './Reviews/Reviews';
 import Tableofcontents from './Tableofcontents/Tableofcontents';
 import ScrollUp from './Scroll-up/Scroll-up';
+import Banner from "./Banner/Banner"
+
 
 export default function Main(props) {
 
@@ -27,15 +29,22 @@ export default function Main(props) {
     }, [parameters, object_id])
 
     return (
-        <div className="main">
-            <div className="main-content" dangerouslySetInnerHTML={{ __html: acf.br_top_description }}></div>
-            <p className="updated custom-updated">
-                <span>✓ </span>
-                Updated {month} 1
-            </p>
-            <Reviews parameters={parameters} />
-            <ScrollUp />
-            <Tableofcontents parameters={acf} />
-        </div>
+
+        <>
+            <div>
+                <Banner parameters={props.parameters} />
+            </div>
+            <div className="main">
+
+                <div className="main-content" dangerouslySetInnerHTML={{ __html: acf.br_top_description }}></div>
+                <p className="updated custom-updated">
+                    <span>✓ </span>
+                    Updated {month} 1
+                </p>
+                <Reviews parameters={parameters} />
+                <ScrollUp />
+                <Tableofcontents parameters={acf} />
+            </div>
+        </>
     );
 };
