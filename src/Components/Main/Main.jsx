@@ -12,7 +12,7 @@ export default function Main(props) {
 
     let { parameters } = props;
     let { object_id } = parameters;
-
+    console.log(parameters)
     const [acf, setAcf] = useState([]);
 
     const date = new Date();
@@ -44,6 +44,7 @@ export default function Main(props) {
                 <Reviews parameters={parameters} />
                 <ScrollUp />
                 <Tableofcontents parameters={acf} />
+
             </div>
         </>
     );
