@@ -1,27 +1,30 @@
 .banner {
-    height: 200px;
-    &-content {
-        max-width: 1170px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 100%;
-    }
-    &-title {
-        color: white;
-        font-weight: bold;
-        font-size: 51px;
-    }
-    &-badge {
-        width: 140px;
-    }
+  height: 200px;
+
+  &-content {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &-title {
+    color: white;
+    font-weight: bold;
+    font-size: 51px;
+  }
+
+  &-badge {
+    width: 140px;
+  }
 }
 
 
 @media (max-width: 1200px) {
-    .banner-content {
-        padding: 0 20px;
+  .banner-content {
+    padding: 0 20px;
 
-    }
+  }
 } 
