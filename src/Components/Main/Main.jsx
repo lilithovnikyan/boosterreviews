@@ -12,7 +12,7 @@ export default function Main(props) {
 
     let { parameters } = props;
     let { object_id } = parameters;
-
+    console.log(parameters)
     const [acf, setAcf] = useState([]);
 
     const date = new Date();
@@ -35,14 +35,16 @@ export default function Main(props) {
                 <Banner parameters={props.parameters} />
             </div>
             <div className="main">
-                <div className="main-content" dangerouslySetInnerHTML={{ __html: bannerDesc }}></div>
+
+                <div className="main-content" dangerouslySetInnerHTML={{ __html: acf.br_top_description }}></div>
                 <p className="updated custom-updated">
                     <span>✓ </span>
                     Updated {month} 1
                 </p>
                 <Reviews parameters={parameters} />
-                   <ScrollUp />
-            <Tableofcontents parameters={acf} />
+                <ScrollUp />
+                <Tableofcontents parameters={acf} />
+
             </div>
         </>
     );
