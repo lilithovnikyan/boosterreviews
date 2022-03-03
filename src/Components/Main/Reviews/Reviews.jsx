@@ -24,6 +24,7 @@ export default function Reviews(props) {
                     <div className="container-fluid br-content-container">
                         {reviewObj.map((itemData, i) => {
                             let item = itemData.acf;
+                            let { thumbnail } = itemData;
                             let { br_url, br_price, br_sale_price, br_rating } = item;
                             let { br_features_list_col1, br_features_list_col2 } = item;
                             let { br_rating_level_text, br_ratings_count } = item;
@@ -57,7 +58,7 @@ export default function Reviews(props) {
                                         {bestRated}
                                         <div className="product-number">{i + 1}</div>
                                         <a target="_blank" href={br_url}>
-                                            <img src="https://mobileboosterreview.com/wp-content/uploads/2021/12/81569390_583413082221651_6816818225007820800_n.jpg" loading="lazy" />
+                                            <img src={thumbnail} loading="lazy" />
                                         </a>
                                     </div>
                                     <div className="order-3 order-md-2 col-12 col-md-6 col-lg-6 col-xl-6 product-features-col no-gutters">
