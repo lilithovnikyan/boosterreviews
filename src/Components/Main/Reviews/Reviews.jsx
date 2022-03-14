@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../Reviews/Reviews.css';
 import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
@@ -7,13 +7,23 @@ export default function Reviews(props) {
 
     const [reviewObj, setReviewObj] = useState([]);
     let { object_id } = props.parameters;
+    const componentMounted = useRef(false); // (3) component is mounted
+    const [first, setfirst] = useState(componentMounted.current);
 
 
     useEffect(() => {
-        if( object_id !== undefined ){
-            axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
-                setReviewObj(res.data.reverse())
-            })
+        if (first) { // (5) is component still mounted?
+            if (object_id !== undefined) {
+                axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
+                    setReviewObj(res.data.reverse())
+                })
+            }
+        }
+
+        setfirst(true);
+        return () => { // This code runs when component is unmounted
+            setfirst(false);
+            componentMounted.current = true; // (4) set it to false when we leave the page
         }
     }, [props.parameters, object_id])
 
@@ -50,7 +60,7 @@ export default function Reviews(props) {
                                 bestRated = '';
                             }
 
-                            let starStyle = {width: 'calc(' + ( parseFloat( br_rating) * 10 ) + '% - 4px)'}
+                            let starStyle = { width: 'calc(' + (parseFloat(br_rating) * 10) + '% - 4px)' }
 
                             return <article key={i} id="post-201" className="product post-201 review type-review status-publish has-post-thumbnail hentry review-category-4g-signal-boosters entry">
                                 <div className="row no-gutters product-row">
