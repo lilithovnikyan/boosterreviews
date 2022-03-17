@@ -18,13 +18,14 @@ const Nav = (props) => {
     }, [props.logoSetParentState, change])
 
     useEffect(() => {
-        menuLink.map((item, i) => {
-            if (slug == item.slug) {
-                props.parentStateSetter(item)
-            } else if (slug === '') {
-                props.parentStateSetter(menuLink[0])
+        for( var i = 0; i< menuLink.length; i++){
+            if (slug == menuLink[i].slug) {
+                props.parentStateSetter(menuLink[i]);
+                break;
+            }else{
+                props.parentStateSetter(menuLink[0]);
             }
-        })
+        }
         
         props.logoSetParentState(menuLink[0])
     }, [props.parentStateSetter, menuLink, change]);
@@ -55,7 +56,7 @@ const Nav = (props) => {
 
                 return (
                     <li key={i}>
-                        <Link className={`right-menu-link ${active}`} onClick={()=>{ onSliderChangeHandler(item) }} to={item.slug}>{item.title}</Link>
+                        <Link className={`right-menu-link ${active}`} onClick={()=>{ onSliderChangeHandler(item) }} to={'/'+item.slug}>{item.title}</Link>
                     </li>
                 )
             })}
