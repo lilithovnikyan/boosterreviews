@@ -11,11 +11,11 @@ function Footer(props) {
     const slug = params["*"];
 
     useEffect(() => {
-        axios.get("https://mobileboosterreview.com/wp-json/wp/v2/menu-locations/footer").then(res => {
+        axios.get(`${window.APICallUrl}/wp-json/wp/v2/menu-locations/footer`).then(res => {
             setfirst(res.data)
         });
 
-        axios.get("https://mobileboosterreview.com/wp-json/wp/v2/copyright").then(res => {
+        axios.get(`${window.APICallUrl}/wp-json/wp/v2/copyright`).then(res => {
             setCopyright(res.data)
         })
     }, []);
