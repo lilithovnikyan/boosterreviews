@@ -14,7 +14,7 @@ export default function Reviews(props) {
     useEffect(() => {
         if (first) { // (5) is component still mounted?
             if (object_id !== undefined) {
-                axios.get(`${window.APICallUrl}/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
+                axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
                     setReviewObj(res.data.reverse())
                 })
             }
@@ -68,7 +68,7 @@ export default function Reviews(props) {
                                         {bestRated}
                                         <div className="product-number">{i + 1}</div>
                                         <a target="_blank" href={br_url}>
-                                            <img src={thumbnail} loading="lazy" />
+                                            <img src={thumbnail} loading="lazy" alt={`product-picture${i + 1}`}/>
                                         </a>
                                     </div>
                                     <div className="order-3 order-md-2 col-12 col-md-6 col-lg-6 col-xl-6 product-features-col no-gutters">

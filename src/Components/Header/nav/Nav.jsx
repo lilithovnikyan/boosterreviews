@@ -12,7 +12,7 @@ const Nav = (props) => {
     const [change, setChange] = useState([])
 
     useEffect(() => {
-        axios.get(`${window.APICallUrl}/wp-json/wp/v2/menu-locations/primary`).then(menu => {
+        axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/menu-locations/primary`).then(menu => {
             setMenuLink(menu.data)
         })
     }, [props.logoSetParentState, change])
@@ -33,6 +33,7 @@ const Nav = (props) => {
     const onSliderChangeHandler = (item) => {
         props.parentStateSetter(item)
         setChange(item);
+        setBurger(!burger)
     };
 
     return (

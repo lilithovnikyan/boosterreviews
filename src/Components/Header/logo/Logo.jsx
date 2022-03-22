@@ -9,7 +9,7 @@ export default function Logo(props) {
     const [change, setChange] = useState([]);
 
     useEffect(() => {
-        axios.get(`${window.APICallUrl}/wp-json/wp/v2/media/188`).then(logoImg => {
+        axios.get("https://mobileboosterreview.com/wp-json/wp/v2/media/188").then(logoImg => {
             setLogo(logoImg.data)
         })
     }, []);
@@ -26,7 +26,7 @@ export default function Logo(props) {
     return (
         <div>
             <Link to="/" onClick={()=>{onChangeHandler(props.logoClickData)}}>
-                <img src={logo.source_url} alt=""  className="logo"/>
+                <img src={logo.source_url} alt="Logo"  className="logo"/>
             </Link>
         </div>
     );
