@@ -33,6 +33,7 @@ const Nav = (props) => {
     const onSliderChangeHandler = (item) => {
         props.parentStateSetter(item)
         setChange(item);
+        setBurger(!burger)
     };
 
     return (

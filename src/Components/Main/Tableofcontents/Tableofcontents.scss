@@ -28,7 +28,7 @@ html {
         li {
 
 
-          .topic-table-item {
+          a {
             display: block;
             padding: 7px 0;
             margin: 7px 10px 7px 0;
@@ -41,6 +41,10 @@ html {
             word-break: normal;
             -webkit-transition: all 0.3s ease-out;
             transition: all 0.3s ease-out;
+
+            &.active {
+              text-decoration: underline;
+            }
           }
         }
       }
@@ -81,5 +85,28 @@ html {
       font-weight: 400;
       margin: 0px 0px 15px 0px;
     }
+  }
+}
+
+
+@media (max-width: 767px) {
+  .TableOfContents_section {
+    flex-direction: column;
+  }
+  .TableOfContents_section .TableOfContents_sidebar, .TableOfContents_section .TableOfContents_right{
+    width: 100%;
+  }
+  .TableOfContents_section .TableOfContents_right h2 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .TableOfContents_section .TableOfContents_right p {
+    font-size: 15px;
+  }
+  .TableOfContents_section .TableOfContents_sidebar .TableOfContents_sidebar-sticky ul li .topic-table-item {
+    padding: 2px 0;
+    font-size: 17px;
+    width: 100%;
+    line-height: 1.25;
   }
 }
