@@ -9,7 +9,7 @@ export default function Logo(props) {
     const [change, setChange] = useState([]);
 
     useEffect(() => {
-        axios.get("https://mobileboosterreview.com/wp-json/wp/v2/media/188").then(logoImg => {
+        axios.get(`${window.APICallUrl}/wp-json/wp/v2/media/188`).then(logoImg => {
             setLogo(logoImg.data)
         })
     }, []);
