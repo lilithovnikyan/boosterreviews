@@ -24,29 +24,6 @@ function App() {
     return (
         <div className="App" >
             <Routes >
-                {/* <Route path="*" element={
-                    <>
-                        <Header
-                            parameters={parameters}
-                            parentStateSetter={wrapperSetParentState}
-                            logoClickData={logoClickData}
-                            logoSetParentState={logoSetParentState}
-                        />
-                        <Main parameters={parameters} />
-                    </>
-                } />
-
-                <Route path={`${state.slug}`} element={
-                    <>
-                        <Header
-                            parameters={parameters}
-                            parentStateSetter={wrapperSetParentState}
-                            logoClickData={logoClickData}
-                            logoSetParentState={logoSetParentState}
-                        />
-                        <PrivacyUserInfo state={state} setState={setState} />
-                    </>
-                } /> */}
 
                 <Route path="*" element={
                     <>
