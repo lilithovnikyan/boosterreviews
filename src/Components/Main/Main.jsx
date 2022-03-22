@@ -28,7 +28,7 @@ export default function Main(props) {
 
         if (first) {
             if (object_id != undefined) {
-                axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/review-category/${object_id}`)
+                axios.get(`${window.APICallUrl}/wp-json/wp/v2/review-category/${object_id}`)
                     .then(res => {
                         setAcf(res.data.acf)
                         let a = res.data.acf.br_top_description.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
@@ -73,9 +73,6 @@ export default function Main(props) {
     return (
 
         <>
-            {/* <MetaTags>
-                <meta name="description" content={desc} />
-            </MetaTags> */}
             <div>
                 <Banner parameters={props.parameters} />
             </div>

@@ -14,7 +14,7 @@ export default function Reviews(props) {
     useEffect(() => {
         if (first) { // (5) is component still mounted?
             if (object_id !== undefined) {
-                axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
+                axios.get(`${window.APICallUrl}/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
                     setReviewObj(res.data.reverse())
                 })
             }
