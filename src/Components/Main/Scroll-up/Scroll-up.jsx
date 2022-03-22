@@ -17,7 +17,8 @@ function ScrollUp() {
                     <div className="col-12">
                         <div className="show-products-container">
                             <div className="show_products_up show-products open">
-                                <img onClick={clickToTop} src="https://www.freeiconspng.com/thumbs/up-arrow-png/up-arrow-png-8.png" alt="scroll-up"/>
+                                <img onClick={clickToTop}
+                                     src="https://www.freeiconspng.com/thumbs/up-arrow-png/up-arrow-png-8.png"/>
                             </div>
                         </div>
                     </div>

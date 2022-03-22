@@ -26,7 +26,7 @@ export default function Logo(props) {
     return (
         <div>
             <Link to="/" onClick={()=>{onChangeHandler(props.logoClickData)}}>
-                <img src={logo.source_url} alt="Logo"  className="logo"/>
+                <img src={logo.source_url} alt=""  className="logo"/>
             </Link>
         </div>
     );

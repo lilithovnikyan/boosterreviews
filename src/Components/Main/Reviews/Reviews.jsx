@@ -68,7 +68,7 @@ export default function Reviews(props) {
                                         {bestRated}
                                         <div className="product-number">{i + 1}</div>
                                         <a target="_blank" href={br_url}>
-                                            <img src={thumbnail} loading="lazy" alt={`product-picture${i + 1}`}/>
+                                            <img src={thumbnail} loading="lazy" />
                                         </a>
                                     </div>
                                     <div className="order-3 order-md-2 col-12 col-md-6 col-lg-6 col-xl-6 product-features-col no-gutters">
