@@ -25,6 +25,27 @@
 @media (max-width: 1200px) {
   .banner-content {
     padding: 0 20px;
-
   }
-} 
+}
+
+@media (max-width: 767px) {
+  .banner {
+    height: 160px;
+  }
+  .banner-title {
+    font-size: 35px;
+    line-height: 40px;
+  }
+  .banner-badge {
+    width: 110px;
+  }
+}
+
+@media (max-width: 350px) {
+
+  .banner-title {
+    font-size: 30px;
+    line-height: 35px;
+  }
+}
+

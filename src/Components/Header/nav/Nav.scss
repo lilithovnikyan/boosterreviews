@@ -6,7 +6,7 @@
 
     li {
       list-style: none;
-      margin-left: 15px;
+      margin:0 0 0 15px;
 
       &:hover {
         background-color: #3b4e51;
@@ -26,6 +26,9 @@
 
         &:hover {
           color: white;
+        }
+        &.active{
+          background-color: rgba(59, 78, 81, 0.3);
         }
       }
     }

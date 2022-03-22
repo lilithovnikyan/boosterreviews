@@ -495,6 +495,8 @@ li {
 .trust_title {
     color: black;
     line-height: 30px;
+    margin-bottom: 20px;
+    text-align: left !important;
 }
 
 header.site-header {
@@ -1588,7 +1590,11 @@ ul.sub-menu > li.menu-item:hover > ul.sub-menu {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+    .color-stars {
+        left: 8px;
+    }
+
     .visible-mobile {
         display: block;
     }
@@ -1657,6 +1663,10 @@ ul.sub-menu > li.menu-item:hover > ul.sub-menu {
 
     .logo-outer img {
         width: 180px;
+    }
+
+    .copyright {
+        padding: 5px 0;
     }
 
     .left-block {
