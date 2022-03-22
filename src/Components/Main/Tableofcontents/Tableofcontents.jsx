@@ -61,8 +61,7 @@ function Tableofcontents(props) {
                     if (typeof item.br_instruction_title !== "undefined") {
                         html = <h2 key={i} id={`instruction_block_${i}`}>{item.br_instruction_title}</h2>;
                     } else if (typeof item.br_instruction_description !== "undefined") {
-                        html = <div key={i} className=""
-                                    dangerouslySetInnerHTML={{__html: item.br_instruction_description}}></div>
+                        html = <div key={i} className="" dangerouslySetInnerHTML={{__html: item.br_instruction_description}}/>
                     }
                     return html;
                 })}
