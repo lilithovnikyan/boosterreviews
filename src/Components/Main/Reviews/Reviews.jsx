@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../Reviews/Reviews.css';
 import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
@@ -7,13 +7,23 @@ export default function Reviews(props) {
 
     const [reviewObj, setReviewObj] = useState([]);
     let { object_id } = props.parameters;
+    const componentMounted = useRef(false); // (3) component is mounted
+    const [first, setfirst] = useState(componentMounted.current);
 
 
     useEffect(() => {
-        if( object_id !== undefined ){
-            axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
-                setReviewObj(res.data.reverse())
-            })
+        if (first) { // (5) is component still mounted?
+            if (object_id !== undefined) {
+                axios.get(`https://mobileboosterreview.com/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
+                    setReviewObj(res.data.reverse())
+                })
+            }
+        }
+
+        setfirst(true);
+        return () => { // This code runs when component is unmounted
+            setfirst(false);
+            componentMounted.current = true; // (4) set it to false when we leave the page
         }
     }, [props.parameters, object_id])
 
@@ -24,6 +34,7 @@ export default function Reviews(props) {
                     <div className="container-fluid br-content-container">
                         {reviewObj.map((itemData, i) => {
                             let item = itemData.acf;
+                            let { thumbnail } = itemData;
                             let { br_url, br_price, br_sale_price, br_rating } = item;
                             let { br_features_list_col1, br_features_list_col2 } = item;
                             let { br_rating_level_text, br_ratings_count } = item;
@@ -49,7 +60,7 @@ export default function Reviews(props) {
                                 bestRated = '';
                             }
 
-                            let starStyle = {width: 'calc(' + ( parseFloat( br_rating) * 10 ) + '% - 4px)'}
+                            let starStyle = { width: 'calc(' + (parseFloat(br_rating) * 10) + '% - 4px)' }
 
                             return <article key={i} id="post-201" className="product post-201 review type-review status-publish has-post-thumbnail hentry review-category-4g-signal-boosters entry">
                                 <div className="row no-gutters product-row">
@@ -57,7 +68,7 @@ export default function Reviews(props) {
                                         {bestRated}
                                         <div className="product-number">{i + 1}</div>
                                         <a target="_blank" href={br_url}>
-                                            <img src="https://mobileboosterreview.com/wp-content/uploads/2021/12/81569390_583413082221651_6816818225007820800_n.jpg" loading="lazy" />
+                                            <img src={thumbnail} loading="lazy" />
                                         </a>
                                     </div>
                                     <div className="order-3 order-md-2 col-12 col-md-6 col-lg-6 col-xl-6 product-features-col no-gutters">

@@ -2,11 +2,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./Footer.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Footer(props) {
     const [footerMenu, setfirst] = useState([])
     const [copyright, setCopyright] = useState([])
+    const params = useParams();
+    const slug = params["*"];
 
     useEffect(() => {
         axios.get("https://mobileboosterreview.com/wp-json/wp/v2/menu-locations/footer").then(res => {
@@ -17,6 +19,17 @@ function Footer(props) {
             setCopyright(res.data)
         })
     }, []);
+    
+    useEffect(() => {
+        for( var i = 0; i< footerMenu.length; i++){
+            if (slug == footerMenu[i].slug) {
+                props.setState(footerMenu[i]);
+                break;
+            }else{
+                // props.setState({})
+            }
+        }
+    }, [footerMenu, props.setState, props.state]);
 
     let passSlug = (item) => {
         props.setState(item);
@@ -27,7 +40,7 @@ function Footer(props) {
                 <ul>
                     {footerMenu.map((item, index) => {
                         return  <li className="menu-item" key={index}>
-                                <Link to={item.slug} onClick={() => passSlug(item)}>
+                                <Link to={'/'+item.slug} onClick={() => passSlug(item)}>
                                     {item.title}
                                 </Link>
                             </li>
