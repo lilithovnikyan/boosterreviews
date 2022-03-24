@@ -2,7 +2,6 @@ import React from 'react';
 import Logo from './logo/Logo';
 import Nav from "./nav/Nav";
 import "./Header.scss";
-import Banner from './Banner/Banner';
 
 export default function Header(props) {
 
@@ -23,3 +22,4 @@ export default function Header(props) {
         </header>
     )
 }
+
