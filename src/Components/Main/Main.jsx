@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import "./Main.scss";
 
 import Reviews from './Reviews/Reviews';
 import Tableofcontents from './Tableofcontents/Tableofcontents';
 import ScrollUp from './Scroll-up/Scroll-up';
 import Banner from "./Banner/Banner";
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 // import { MetaTags } from 'react-meta-tags';
 
 
@@ -15,14 +15,15 @@ export default function Main(props) {
     const params = useParams();
     const slug = params["*"];
     const componentMounted = useRef(true); // (3) component is mounted
-    let { parameters } = props;
-    let { object_id } = parameters;
+    let {parameters} = props;
+    let {object_id} = parameters;
     const [first, setfirst] = useState(componentMounted.current)
     const [acf, setAcf] = useState([]);
     const [desc, setDesc] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const date = new Date();
-    const month = date.toLocaleString('default', { month: 'long' });
+    const month = date.toLocaleString('default', {month: 'long'});
 
     useEffect(() => {
 
@@ -33,6 +34,7 @@ export default function Main(props) {
                         setAcf(res.data.acf)
                         let a = res.data.acf.br_top_description.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
                         setDesc(a);
+                        setLoading(false)
                     })
 
             }
@@ -68,23 +70,38 @@ export default function Main(props) {
                 }
             })
         }
-    }, [desc])
+    }, [desc, loading])
 
     return (
 
         <>
             <div>
-                <Banner parameters={props.parameters} />
+                <Banner parameters={props.parameters}/>
             </div>
             <div className="main">
-                <div className="main-content" dangerouslySetInnerHTML={{ __html: desc }}></div>
-                <p className="updated custom-updated">
-                    <span>✓ </span>
-                    Updated {month} 1
-                </p>
-                <Reviews parameters={parameters} />
-                <ScrollUp />
-                <Tableofcontents parameters={acf} />
+                {
+                    loading ?
+                        <div className="mainLoadingContent">
+                            <div className="mainLoadingTitle"/>
+                            <div className="mainLoadingDesc"/>
+                            <div className="mainLoadingData"/>
+                        </div>
+                        :
+                        <>
+                            <div className="main-content" dangerouslySetInnerHTML={{__html: desc}}></div>
+                            <p className="updated custom-updated">
+                                <span>✓ </span>
+                                Updated {month} 1
+                            </p>
+                        </>
+                }
+                <Reviews parameters={parameters}/>
+                {
+                    loading ? <div className="scrollUpLoading"></div>
+                        :
+                        <ScrollUp/>
+                }
+                <Tableofcontents parameters={acf}/>
 
             </div>
         </>

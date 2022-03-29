@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import axios from "axios";
 import "./Nav.scss";
-import { Link, Outlet, useOutlet, useParams } from "react-router-dom";
+import {Link, Outlet, useOutlet, useParams} from "react-router-dom";
 
 const Nav = (props) => {
     const [burger, setBurger] = useState(false);
@@ -9,24 +9,26 @@ const Nav = (props) => {
     const params = useParams();
     const slug = params["*"];
     const [menuLink, setMenuLink] = useState([]);
-    const [change, setChange] = useState([])
+    const [change, setChange] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get(`${window.APICallUrl}/wp-json/wp/v2/menu-locations/primary`).then(menu => {
             setMenuLink(menu.data)
+            setLoading(false)
         })
     }, [props.logoSetParentState, change])
 
     useEffect(() => {
-        for( var i = 0; i< menuLink.length; i++){
+        for (var i = 0; i < menuLink.length; i++) {
             if (slug == menuLink[i].slug) {
                 props.parentStateSetter(menuLink[i]);
                 break;
-            }else{
+            } else {
                 props.parentStateSetter(menuLink[0]);
             }
         }
-        
+
         props.logoSetParentState(menuLink[0])
     }, [props.parentStateSetter, menuLink, change]);
 
@@ -37,32 +39,47 @@ const Nav = (props) => {
     };
 
     return (
-        <div className="right-menu">
-        <div className="menu-bar" onClick={() => setBurger(!burger)} value={burger}>
-        {/*<h4>{burger ? "Close" : "Menu"}</h4>*/}
-        <div className={`header-burger ${burger ? "active" : ""}`}>
+        <>
+            {
+                loading ?
+                    <>
+                        <div className="loadingMenuDiv"></div>
+                        <div className="loadingMenuDiv"></div>
+                        <div className="loadingMenuDiv"></div>
+                        <div className="loadingMenuDiv"></div>
+                        <div className="loadingMenuDiv"></div>
+                        <div className="loadingMenuDivBurger"></div>
+                    </>
+                    : <div className="right-menu">
+                        <div className="menu-bar" onClick={() => setBurger(!burger)} value={burger}>
+                            {/*<h4>{burger ? "Close" : "Menu"}</h4>*/}
+                            <div className={`header-burger ${burger ? "active" : ""}`}>
 
-            <span></span>
-        </div>
+                                <span></span>
+                            </div>
 
 
-    </div>
-        <ul className={burger ? "open" : ""}>
-            {menuLink.map((item, i) => {
+                        </div>
+                        <ul className={burger ? "open" : ""}>
+                            {menuLink.map((item, i) => {
 
-                let active = '';
-                if (slug == item.slug) {
-                    active = 'active';
-                }
+                                let active = '';
+                                if (slug == item.slug) {
+                                    active = 'active';
+                                }
 
-                return (
-                    <li key={i}>
-                        <Link className={`right-menu-link ${active}`} onClick={()=>{ onSliderChangeHandler(item) }} to={'/'+item.slug}>{item.title}</Link>
-                    </li>
-                )
-            })}
-            </ul>
-        </div>
+                                return (
+                                    <li key={i}>
+                                        <Link className={`right-menu-link ${active}`} onClick={() => {
+                                            onSliderChangeHandler(item)
+                                        }} to={'/' + item.slug}>{item.title}</Link>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+            }
+        </>
     );
 };
 

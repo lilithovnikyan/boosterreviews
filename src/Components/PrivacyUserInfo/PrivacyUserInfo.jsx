@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import axios from "axios";
 import "./PrivacyUserInfo.scss";
 
@@ -11,14 +11,16 @@ export default function PrivacyUserInfo(props) {
     const componentMounted2 = useRef({}); // (3) component is mounted
     const [first, setfirst] = useState(componentMounted.current);
     const [oldCatData, setOldCatData] = useState(componentMounted2.current);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (first) { // (5) is component still mounted?
             axios.get(`${window.APICallUrl}/wp-json/wp/v2/pages/${props.state.object_id}`).then(res => {
                 setFooterPages(res.data);
+                setLoading(false)
             })
         }
-        
+
         setfirst(true);
         setOldCatData(footerPages);
         return () => { // This code runs when component is unmounted
@@ -36,15 +38,45 @@ export default function PrivacyUserInfo(props) {
             document.head.innerHTML += footerPages.yoast_head;
         }
         return () => {
-            document.head.innerHTML = document.head.innerHTML.replaceAll( regexpPattern, '' );
+            document.head.innerHTML = document.head.innerHTML.replaceAll(regexpPattern, '');
         }
     }, [footerPages, oldCatData]);
 
     return (
-        <div className="privacy-block">
-            <h1>{footerPages && <div dangerouslySetInnerHTML={{ __html: footerPages?.title?.rendered }} />}</h1>
-            {footerPages && <div dangerouslySetInnerHTML={{ __html: footerPages?.content?.rendered }} />}
-        </div>
+        <>
+            {
+                loading ?
+                    <>
+                        <div className="privacyLoadingBlock">
+                            <div className="privacyLoadingTitle"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv100"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv80"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv90"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv100"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv70"/>
+                        </div>
+                        <div className="privacyLoadingBlock">
+                            <div className="privacyLoadingDiv privacyLoadingDiv80"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv100"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv100"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv70"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv90"/>
+                        </div>
+                        <div className="privacyLoadingBlock">
+                            <div className="privacyLoadingDiv privacyLoadingDiv90"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv80"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv90"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv70"/>
+                            <div className="privacyLoadingDiv privacyLoadingDiv100"/>
+                        </div>
+                    </>
+                    : <div className="privacy-block">
+                        <h1>{footerPages && <div dangerouslySetInnerHTML={{__html: footerPages?.title?.rendered}}/>}</h1>
+                        {footerPages && <div dangerouslySetInnerHTML={{__html: footerPages?.content?.rendered}}/>}
+                    </div>
+            }
+        </>
+
     )
 }
 

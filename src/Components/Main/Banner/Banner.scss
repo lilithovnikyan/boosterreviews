@@ -1,5 +1,37 @@
+.loadingBanner {
+  width: 100%;
+  height: 200px;
+  background-color: rgba(204, 204, 204, 0.5);
+}
+
+.loadingBannerContent {
+  max-width: 1170px;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.loadingBannerTitle {
+  max-width: 500px;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(204, 204, 204, 1);
+}
+
+.loadingBannerBadge {
+  max-width: 140px;
+  width: 100%;
+  height: 140px;
+  background-color: rgba(204, 204, 204, 1);
+}
+
 .banner {
   height: 200px;
+  opacity: 0;
 
   &-content {
     max-width: 1170px;
@@ -9,7 +41,10 @@
     justify-content: space-between;
     height: 100%;
   }
-
+ &-toggled {
+   opacity: 1;
+   transition: .5s ease-in-out;
+ }
   &-title {
     color: white;
     font-weight: bold;
@@ -28,7 +63,13 @@
   }
 }
 
+
 @media (max-width: 767px) {
+  .loadingBannerTitle {
+    max-width: 350px;
+    width: 100%;
+  }
+
   .banner {
     height: 160px;
   }
@@ -41,11 +82,49 @@
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 640px) {
+  .loadingBannerTitle {
+    max-width: 250px;
+    width: 100%;
+  }
+}
 
+@media (max-width: 520px) {
+  .loadingBannerTitle {
+    max-width: 180px;
+    width: 100%;
+  }
+  .loadingBannerBadge {
+    max-width: 130px;
+    width: 100%;
+    height: 130px;
+  }
+}
+
+@media (max-width: 450px) {
+  .loadingBannerContent {
+    padding: 50px 40px;
+  }
+  .loadingBannerTitle {
+    max-width: 140px;
+    width: 100%;
+  }
+  .loadingBannerBadge {
+    max-width: 110px;
+    width: 100%;
+    height: 110px;
+  }
+}
+
+
+@media (max-width: 350px) {
   .banner-title {
     font-size: 30px;
     line-height: 35px;
   }
+    .loadingBannerTitle {
+      max-width: 100px;
+      width: 100%;
+    }
 }
 

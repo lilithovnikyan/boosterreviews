@@ -1,3 +1,41 @@
+.mainLoadingContent {
+  padding: 20px;
+  max-width: 1170px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  background-color: rgba(204, 204, 204, 0.5);
+}
+
+.mainLoadingTitle {
+  max-width: 500px;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 20px;
+  background-color: rgba(204, 204, 204, 1);
+}
+
+.mainLoadingDesc {
+  max-width: 1170px;
+  width: 100%;
+  height: 85px;
+  background-color: rgba(204, 204, 204, 1);
+}
+.mainLoadingData{
+  margin-top: 40px;
+  max-width: 300px;
+  width: 100%;
+  height: 25px;
+  background-color: rgba(204, 204, 204, 1);
+}
+
+.scrollUpLoading {
+  max-width: 1170px;
+  width: 100%;
+  height: 10px;
+  background-color: transparent;
+}
+
 .main {
   max-width: 1170px;
   margin: 0 auto;
@@ -30,4 +68,22 @@
   .updated span {
     color: #0dc342;
   }
+}
+
+@media (max-width: 350px) {
+  .mainLoadingContent {
+    padding: 20px 20px;
+  }
+
+  .mainLoadingTitle {
+    width: 250px;
+    height: 40px;
+    margin-bottom: 20px;
+  }
+
+  .mainLoadingDesc {
+    width: 250px;
+    height: 250px;
+  }
+
 }
