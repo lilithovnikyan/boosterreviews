@@ -57,30 +57,34 @@ function App() {
                 document.head.innerHTML += icon270;
             }
         })
+
+        window.onpopstate = function () {
+            window.location.reload();
+        }
     }, []);
 
     return (
         <div className="App">
             <Routes>
 
-                    <Route path="*" element={
-                        <>
-                            <Header
-                                parameters={parameters}
-                                parentStateSetter={wrapperSetParentState}
-                                logoClickData={logoClickData}
-                                logoSetParentState={logoSetParentState}
-                            />
-                            {
-                                slug === state.slug ?
-                                    <PrivacyUserInfo state={state} setState={setState}/>
-                                    : <Main parameters={parameters}/>
-                            }
-                            <Footer state={state} setState={setState}/>
-                        </>
-                    }>
+                <Route path="*" element={
+                    <>
+                        <Header
+                            parameters={parameters}
+                            parentStateSetter={wrapperSetParentState}
+                            logoClickData={logoClickData}
+                            logoSetParentState={logoSetParentState}
+                        />
+                        {
+                            slug === state.slug ?
+                                <PrivacyUserInfo state={state} setState={setState}/>
+                                : <Main parameters={parameters}/>
+                        }
+                        <Footer state={state} setState={setState}/>
+                    </>
+                }>
 
-                    </Route>
+                </Route>
             </Routes>
         </div>
     )

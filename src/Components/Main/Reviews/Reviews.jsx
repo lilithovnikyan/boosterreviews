@@ -20,6 +20,11 @@ export default function Reviews(props) {
                     setLoading(false)
                 })
             }
+        } else{
+            // axios.get(`${window.APICallUrl}/wp-json/wp/v2/review?review-category=${object_id}`).then(res => {
+            //     setReviewObj(res.data.reverse())
+            //     setLoading(false)
+            // })
         }
 
         setfirst(true);
