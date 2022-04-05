@@ -15,6 +15,8 @@ function App() {
     const [parameters, setParameters] = useState([]);
     const [logoClickData, setlogoClickData] = useState([]);
 
+    window.exact = window.exact || false;
+
     const wrapperSetParentState = useCallback(val => {
         setParameters(val);
     }, [setParameters]);
@@ -58,9 +60,25 @@ function App() {
             }
         })
 
+        // window.onload = function () {
+        //     window.scrollTo(0, 0);
+        //     if( window.location.hash && document.getElementById(window.location.hash)){
+        //         setTimeout(function (){
+        //         document.getElementById(window.location.hash).scrollIntoView(true)
+        //
+        //         }, 1000)
+        //     }
+        // }
+
         window.onpopstate = function () {
-            window.location.reload();
+
+            if (window.exact === false) {
+                window.location.reload();
+
+            }
+            window.exact = false;
         }
+
     }, []);
 
     return (

@@ -10,17 +10,16 @@ import {useParams} from 'react-router-dom';
 // import { MetaTags } from 'react-meta-tags';
 
 
-export default function Main(props) {
+export default function Main({parameters}) {
 
     const params = useParams();
     const slug = params["*"];
     const componentMounted = useRef(true); // (3) component is mounted
-    let {parameters} = props;
     let {object_id} = parameters;
     const [first, setfirst] = useState(componentMounted.current)
-    const [acf, setAcf] = useState([]);
     const [desc, setDesc] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [acf, setAcf] = useState([]);
 
     const date = new Date();
     const month = date.toLocaleString('default', {month: 'long'});
@@ -71,12 +70,11 @@ export default function Main(props) {
             })
         }
     }, [desc, loading])
-
     return (
 
         <>
             <div>
-                <Banner parameters={props.parameters}/>
+                <Banner parameters={parameters}/>
             </div>
             <div className="main">
                 {

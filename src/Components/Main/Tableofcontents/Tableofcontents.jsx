@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './Tableofcontents.scss';
 
-function Tableofcontents(props) {
+function Tableofcontents({parameters}) {
 
 
-    const {parameters} = props;
+    // const {parameters} = props;
     const {br_instructions} = parameters;
     const {br_toc_title} = parameters;
     const [instructions, setInstructions] = useState([]);
@@ -22,10 +22,13 @@ function Tableofcontents(props) {
         } else {
             setTocTitle(br_toc_title)
         }
+
     }, [parameters, br_instructions, br_toc_title])
 
 
     const toggle = (item) => {
+        window.exact = true;
+
         setAddActive(item)
         setSt("")
     }
@@ -44,7 +47,8 @@ function Tableofcontents(props) {
                                     <a className={`${i == 0 ? st : ""} ${item === addActive ? "active" : ""}`}
                                        href={`#instruction_block_${i}`}
                                        key={i}
-                                       onClick={() => toggle(item)}>
+                                       onClick={() => toggle(item)}
+                                    >
                                         {item.br_instruction_title}
                                     </a>
                                 </li>
@@ -61,7 +65,8 @@ function Tableofcontents(props) {
                     if (typeof item.br_instruction_title !== "undefined") {
                         html = <h2 key={i} id={`instruction_block_${i}`}>{item.br_instruction_title}</h2>;
                     } else if (typeof item.br_instruction_description !== "undefined") {
-                        html = <div key={i} className="" dangerouslySetInnerHTML={{__html: item.br_instruction_description}}/>
+                        html = <div key={i} className=""
+                                    dangerouslySetInnerHTML={{__html: item.br_instruction_description}}/>
                     }
                     return html;
                 })}
